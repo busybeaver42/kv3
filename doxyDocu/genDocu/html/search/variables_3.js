@@ -1,0 +1,24 @@
+var searchData=
+[
+  ['calibration_801',['calibration',['../classkv3.html#a9ecb17226806563cbde1332af220e3c1',1,'kv3']]],
+  ['captemparature_802',['capTemparature',['../classkv3.html#a7ac0496bedb939675d67252436715ef2',1,'kv3']]],
+  ['capture_803',['capture',['../classkv3.html#a67e1b119d897ffbe678562a7de6d8f90',1,'kv3']]],
+  ['capture_5fstop_804',['capture_stop',['../classkv3audio.html#ac271773d4f1bc06732ceef9396f0e916',1,'kv3audio']]],
+  ['ch0_805',['ch0',['../structt_frame_buffer.html#a6151bf1e663549cb1086cb5eade98723',1,'tFrameBuffer']]],
+  ['ch1_806',['ch1',['../structt_frame_buffer.html#a6d35515a378ad08da0ad44b9ba375f3e',1,'tFrameBuffer']]],
+  ['ch2_807',['ch2',['../structt_frame_buffer.html#a12ebd09e4a7b25a8d200b2428ccff5fe',1,'tFrameBuffer']]],
+  ['ch3_808',['ch3',['../structt_frame_buffer.html#a39f85339b79a96064b0d1fe6596600ca',1,'tFrameBuffer']]],
+  ['ch4_809',['ch4',['../structt_frame_buffer.html#aa529117012b638176e6018e17eb4a318',1,'tFrameBuffer']]],
+  ['ch5_810',['ch5',['../structt_frame_buffer.html#a0ca4916a7208b2ca5540c35385d2fccb',1,'tFrameBuffer']]],
+  ['ch6_811',['ch6',['../structt_frame_buffer.html#ad03ad55b4aabff5346309a7355ce6156',1,'tFrameBuffer']]],
+  ['channels_812',['channels',['../struct_wave_fmt_body.html#a8c4660bbc4ae91047d0b6fd9ff6683a9',1,'WaveFmtBody::channels()'],['../classkv3audio.html#acf4d828d3c68ec14986b635d3687f48a',1,'kv3audio::channels()'],['../kv3audio_8h.html#a9ed2af39747c91928713f96d4e28b53f',1,'channels():&#160;kv3audio.h']]],
+  ['chunk_5fbytes_813',['chunk_bytes',['../classkv3audio.html#a78123accf861d8e3dd370e9c9304d42e',1,'kv3audio']]],
+  ['command_814',['command',['../classkv3audio.html#a19028198514d8f301346fae179e02e0c',1,'kv3audio']]],
+  ['config_815',['config',['../classkv3.html#a94b9b498c69df3847223c72547159839',1,'kv3']]],
+  ['counteraudio_816',['counterAudio',['../main_8cpp.html#ab30940a87f5b9656df754f0a4b0974b6',1,'main.cpp']]],
+  ['counterpvaluebuffer_817',['counterpValueBuffer',['../classaudio_measurement.html#ac53305d51034a37bf8ea8e84fa076ac7',1,'audioMeasurement']]],
+  ['cx0_818',['cx0',['../classkv3.html#ae447179adc18146559fe3b972ffb9b75',1,'kv3']]],
+  ['cx1_819',['cx1',['../classkv3.html#aed5ed9506983dc9afe19582083af1fd7',1,'kv3']]],
+  ['cy0_820',['cy0',['../classkv3.html#a809e9d48557f643674c7e3199d92c091',1,'kv3']]],
+  ['cy1_821',['cy1',['../classkv3.html#a19584d95bf97a94080a61799d920e0e5',1,'kv3']]]
+];

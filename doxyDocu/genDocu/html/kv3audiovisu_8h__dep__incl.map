@@ -1,0 +1,7 @@
+<map id="/media/hd2/dev/kinectV3/kv3Pcl/include/kv3audiovisu.h" name="/media/hd2/dev/kinectV3/kv3Pcl/include/kv3audiovisu.h">
+<area shape="rect" id="node1" title="Implementation of the class functions to visualize the kinect azure microphone audio data." alt="" coords="186,5,389,47"/>
+<area shape="rect" id="node2" href="$kv3odas_8h.html" title="Implementation of the class functions to get from ODAS server the position data of active audio sourc..." alt="" coords="96,95,271,136"/>
+<area shape="rect" id="node5" href="$kv3audiovisu_8cpp.html" title="Implementation of the class functions to visualize the kinect azure microphone audio data." alt="" coords="295,95,488,136"/>
+<area shape="rect" id="node3" href="$kv3odas_8cpp.html" title="Implementation of the class functions to get from ODAS server the position data of active audio sourc..." alt="" coords="5,184,172,225"/>
+<area shape="rect" id="node4" href="$main_8cpp.html" title="main to show how to use the kv3 class." alt="" coords="196,184,363,225"/>
+</map>
