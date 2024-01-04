@@ -1,9 +1,11 @@
 # kv3
 ## Kinect Azure Framework
-If you like my little framework, be a friend and donate little money e.g. for a cup of coffee (Paypal: spende@angermayer.de).
+If you like my little framework, be a friend and donate little money 
+e.g. for a cup of coffee (Paypal: spende@angermayer.de).
 
 ## What the framework support
     - access to the data streams (images, mircophone array, and IMU sensor data)
+    - ODAS support - detect the direction of the noise
     - access and image handling via opencv 4
     - better support and intigration from PCL Lib (https://www.pcl.org/)
     - save RGBD,registered RGB pointcloud, mesh fro PCL and kinect sensor raw data with a running number
