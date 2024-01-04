@@ -1,11 +1,17 @@
 cd build
+
 cmake ..
+
 make -j4
+
 
 optional:
 
+
 cd build
+
 cmake-gui ..
+
 make -j4
 
 
