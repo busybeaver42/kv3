@@ -56,12 +56,11 @@ or use: doxygen config file inside path ./kv3/doxyDocu/...
 inside CLI:
 
 cd /kv3/doxyDocu/
-
 doxywizard Doxyfile
 
-And create your documentation (press lower down button <next> several time and
+And create your documentation (press lower down corner the <next> button several time and
 
-at the endpress the button upper left <Run doxygen>)
+at the end press the <Run doxygen> button in the upper left corner )
 
     
 ### kv3 GUI - with pointcloud visualisation
