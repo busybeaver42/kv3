@@ -7,6 +7,7 @@ e.g. for a cup of coffee (Paypal: spende@angermayer.de).
 ## What the framework support
     - access to the data streams (images, mircophone array, and IMU sensor data)
     - ODAS support - detect the direction of the noise
+    - ODAS cofiguration files for Kinect Azure micrphone array (kv3/cfg/...)
     - access and image handling via opencv 4
     - better support and intigration from PCL Lib (https://www.pcl.org/)
     - save RGBD,registered RGB pointcloud, mesh fro PCL and kinect sensor raw data with a running number
