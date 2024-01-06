@@ -48,10 +48,11 @@ My motivation was to use the microsoft kinect azure driver / API and make all mo
     ./bin/kv3
 
 #### API documentation
-    https://github.com/busybeaver42/kv3/tree/main/doxyDocu/genDocu/html/index.html
+    inside git repository:
+   ../kv3/doxyDocu/genDocu/html/index.html
     
-    or use: doxygen config file inside path ./kv3/doxyDocu/...
-    inside CLI:
+    or use: the doxygen config file "Doxyfile", inside path ./kv3/doxyDocu/...
+    How to:
     cd /kv3/doxyDocu/
     doxywizard Doxyfile
     And create your documentation (press lower down corner the <next> button several time and
