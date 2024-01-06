@@ -48,19 +48,14 @@ My motivation was to use the microsoft kinect azure driver / API and make all mo
     ./bin/kv3
 
 #### API documentation
-https://github.com/busybeaver42/kv3/tree/main/doxyDocu/genDocu/html/index.html
-
-
-or use: doxygen config file inside path ./kv3/doxyDocu/...
-
-inside CLI:
-
-cd /kv3/doxyDocu/
-doxywizard Doxyfile
-
-And create your documentation (press lower down corner the <next> button several time and
-
-at the end press the <Run doxygen> button in the upper left corner )
+    https://github.com/busybeaver42/kv3/tree/main/doxyDocu/genDocu/html/index.html
+    
+    or use: doxygen config file inside path ./kv3/doxyDocu/...
+    inside CLI:
+    cd /kv3/doxyDocu/
+    doxywizard Doxyfile
+    And create your documentation (press lower down corner the <next> button several time and
+    at the end press the <Run doxygen> button in the upper left corner )
 
     
 ### kv3 GUI - with pointcloud visualisation
