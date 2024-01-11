@@ -1,4 +1,3 @@
-![Bildschirmfoto von 2024-01-11 22-23-40](https://github.com/busybeaver42/kv3/assets/68555874/2e85cc25-4ab4-48bb-9b04-6c199e03b403)# kv3
 ## Kinect Azure Framework
 If you like my little framework, be a friend and donate little money
 
