@@ -980,7 +980,7 @@ void kv3::releaseAllkv3img(){
     k4a_image_release(kv3ImColor);
     k4a_image_release(kv3ImColorRegDepth);
     k4a_image_release(kv3ImIr);
-    k4a_capture_release(capture);
+    k4a_capture_release(capture); 
 }
 
 

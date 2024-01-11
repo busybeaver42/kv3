@@ -1,0 +1,3 @@
+/media/hd2/dev/60_kinectV3/10_onGithub/kv3/build/CMakeFiles/kv3.dir
+/media/hd2/dev/60_kinectV3/10_onGithub/kv3/build/CMakeFiles/edit_cache.dir
+/media/hd2/dev/60_kinectV3/10_onGithub/kv3/build/CMakeFiles/rebuild_cache.dir

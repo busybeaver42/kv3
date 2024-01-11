@@ -1,7 +1,7 @@
 #include "audioMeasurement.h"
 
 //STATIC 
-	char *audioMeasurement::device = "plughw:2,0";//"plughw:1,0";// "plughw:2,0" //"default";
+	char *audioMeasurement::device = "plughw:3,0"; //"plughw:1,0";//"plughw:1,0";// "plughw:2,0" //"default";
 	short audioMeasurement::buffer[8*1024];
 	int audioMeasurement::buffer_size = sizeof(buffer)>>1;
     snd_pcm_t *audioMeasurement::handle_capture;

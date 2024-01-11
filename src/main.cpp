@@ -321,7 +321,6 @@ void showKv2Demo(kv3odas *kv3AppOdas , audioMeasurement *audioM ){
 	//kv3
 	string strWin01 = string("Resized and registered color and depth image - CV_8UC4 - 24");
 	string strWin02 = string("Original Ir(left) and depth(right) image - CV_16UC1 - 2");
-	string strWin03 = string("PointCloud image - CV_32FC3 - 21");
 	
 	float factor = 1.4;
 	int w = round(640/factor);
@@ -339,14 +338,7 @@ void showKv2Demo(kv3odas *kv3AppOdas , audioMeasurement *audioM ){
 	int winy1 = 0;
 	
 	kv3 kv3AppObj = kv3();
-	kv3AppObj.setup();
-	
-	/*
-	std::string strHwVersion = kv3AppObj.getHardwareVersion();
-	cout << " ---- --- -- Kinect Azure hardware version -- --- ----" << endl;
-	cout << strHwVersion << endl;
-	cout << " ---- --- -- - -- --- ----" << endl;
-	*/
+	kv3AppObj.setup03();
 
 	cout << "start update loop" << endl;
 	Mat win02(h, w*2, CV_16UC1, Scalar(0,0,0));
@@ -357,13 +349,12 @@ void showKv2Demo(kv3odas *kv3AppOdas , audioMeasurement *audioM ){
 			audioMimg = audioM->getMeasurementImage();
 		}
 		
-		kv3AppObj.update();
+		kv3AppObj.update(0);
 
 		kv3AppObj.getCvColorImg(colorImg);
 		kv3AppObj.getCvIrImg(irImg);
 		kv3AppObj.getCvDepthImg(depthImg);
-		kv3AppObj.getCvRegDepthImg(colorImgRegDepth);
-		//kv3AppObj.calcCvPcl(colorImgRegDepth, kv3PCL);		
+		kv3AppObj.getCvRegDepthImg(colorImgRegDepth);		
 
 		kv3AppObj.resizeImg(colorImg, w, 0);
 		kv3AppObj.resizeImg(colorImgRegDepth, w, 0);
@@ -371,7 +362,6 @@ void showKv2Demo(kv3odas *kv3AppOdas , audioMeasurement *audioM ){
 		Mat win01(h2, w*2, CV_8UC4, Scalar(0,0,0));
 		kv3AppObj.resizeImg(irImg, w, h);
 		kv3AppObj.resizeImg(depthImg, w, h);
-		kv3AppObj.resizeImg(kv3PCL, w, h2);
 		
 		kv3AppObj.convToVisibleImg(colorImgRegDepth, colorImgRegDepth);
 		kv3AppObj.convIrToVisibleImg(irImg, irImg);
@@ -379,19 +369,21 @@ void showKv2Demo(kv3odas *kv3AppOdas , audioMeasurement *audioM ){
 
 	cv::namedWindow( strWin01, cv::WINDOW_AUTOSIZE|cv::WINDOW_GUI_NORMAL);
 	cv::namedWindow( strWin02, cv::WINDOW_AUTOSIZE|cv::WINDOW_GUI_NORMAL);
-	cv::namedWindow( strWin03, cv::WINDOW_AUTOSIZE|cv::WINDOW_GUI_NORMAL);	
 	if(kv3AppOdas != nullptr){
 		cv::namedWindow( strWin04, cv::WINDOW_AUTOSIZE|cv::WINDOW_GUI_NORMAL);
 	}
 	if(audioM != nullptr){
 		cv::namedWindow( strWin05, cv::WINDOW_AUTOSIZE|cv::WINDOW_GUI_NORMAL);		
 	}		
+	
 		//win 01
-		Mat regDepth8UC4;
-		regDepth.convertTo(regDepth8UC4, CV_8UC4, 1.0 / 255.0, 0.0);
+		cv::Mat regDepth8UC4;
+		colorImgRegDepth.convertTo(regDepth8UC4, CV_8UC4, 1.0 / 255.0, 0.0);
 		cvtColor(regDepth8UC4, regDepth8UC4, cv::COLOR_RGB2RGBA);
-		addTextToImg(regDepth8UC4, regDepth8UC4, kv3AppObj);
-		regDepth8UC4.copyTo(win01(Rect(w, 0, regDepth8UC4.size().width, h2)));
+		addkv3TextToImg(regDepth8UC4, regDepth8UC4, kv3AppObj);
+		
+		//regDepth8UC4.copyTo(win01(Rect(w, 0, regDepth8UC4.size().width, h2)));
+		
 		Mat colorImg2;
 		cvtColor(colorImg, colorImg2, cv::COLOR_RGB2RGBA);
 		colorImg.copyTo(win01(Rect(0, 0, colorImg.size().width, h2)));	
@@ -404,10 +396,6 @@ void showKv2Demo(kv3odas *kv3AppOdas , audioMeasurement *audioM ){
 		depthImg.copyTo(win02(Rect(w, 0, depthImg.size().width, depthImg.size().height)));
 		imshow(strWin02,win02);
 		moveWindow(strWin02, 0, win01.size().height+64);
-
-		//win 03
-		imshow(strWin03, kv3PCL);
-		moveWindow(strWin03, w+w+72, 0);
 
 		//ODAS
 		if(kv3AppOdas != nullptr){		
@@ -427,7 +415,6 @@ void showKv2Demo(kv3odas *kv3AppOdas , audioMeasurement *audioM ){
         if(key == 27){			
 			cv::destroyWindow( strWin01 ); 
 			cv::destroyWindow( strWin02 ); 
-			cv::destroyWindow( strWin03 ); 
 			if(kv3AppOdas != nullptr){
 				cv::destroyWindow( strWin04 ); 	
 			}
@@ -567,9 +554,9 @@ void testSyncStart(kv3odas kv3AppOdas){
 	float len;
 
 	kv3 kv3AppObj = kv3();
-	kv3AppObj.setup();
+	kv3AppObj.setup03();
 	while(1){
-		kv3AppObj.update();
+		kv3AppObj.update(0);
 
 			kv3AppOdas.getNearesSoundObj(idx, x, y, z, len);
 			//cout << "idx: " << idx << " x: " << x << " y: " << y << " z: " << z << " len: " << len << endl;
@@ -606,6 +593,17 @@ int main() {
 
 	int winCC_x = imgWinWidth+imgWinWidth+borDis+borDis;
 	int winCC_y = 920;//880;
+
+#ifdef USE_ODAS
+	// this app is starting the odas server
+	// start the odas live system with the configuration for kinect azure to get online the needed data:
+	//  cd /media/hd2/git_pool_hd2/ODASpool/odas/build/bin
+	//  sudo ./odaslive -vc /media/hd2/git_pool_hd2/ODASpool/odas/config/odaslive/kv3Socket.cfg
+	kv3odas kv3AppOdas = kv3odas(9000);
+	pthread_create(&thrOdas, NULL, kv3OdasServer, (kv3odas *)&kv3AppOdas);
+	kv3AppOdas.startOdasLive();// try to start the odas live system, but it need sudo rights to work.
+	string strWinOdas = string("ODAS - Open embeddeD Audio System");	
+#endif	
 
 #ifdef USE_PCL
 	pcl::PointCloud<pcl::PointXYZRGB>::Ptr rgbPcl (new pcl::PointCloud<pcl::PointXYZRGB>);
@@ -731,6 +729,17 @@ std::cout << " ---- Current path is " << cwd << '\n';
 					}		
 				}					
 			}	
+
+		#ifdef USE_ODAS
+			cv::namedWindow( strWinOdas, cv::WINDOW_AUTOSIZE|cv::WINDOW_GUI_NORMAL);
+			int idx;
+			float x; float y; float z; float len;
+			kv3AppOdas.getNearesSoundObj(idx, x, y, z, len);
+			Mat trImg = kv3AppOdas.drawOdasTrackingData(idx, x, y, z);
+			imshow(strWinOdas,trImg);	
+			moveWindow(strWinOdas, winCC_x+100,0);
+		#endif		
+
 			#endif	
 
 		}//end_if_else
@@ -862,11 +871,6 @@ std::cout << " ---- Current path is " << cwd << '\n';
 		 }//end if key()		  		 		 		
 
         if((key == 's')&&(newImIsAvailable == 1)){ 		
-			//pcl::io::loadPolygonFileSTL("/var/www/ramdev/meshPoisson.stl", liveMesh);	
-			if(viewMesh == 1){
-				pcl::io::savePolygonFileSTL(string(resultPath+to_string(masterCounter)+"_kv3_Mesh.stl"), liveMesh);			
-			}	
-			
 			Mat grabPcl;
 			kv3AppObj.calcCvPclCamColor(depthImg, grabPcl);
 			cv::viz::writeCloud(string(resultPath+to_string(masterCounter)+"_kv3_CV2viz_Pcl.ply").c_str(), grabPcl, colorImgRegDepth);		
@@ -879,21 +883,7 @@ std::cout << " ---- Current path is " << cwd << '\n';
 			kv3AppObj.writePCL(string(resultPath+to_string(masterCounter)+"_Pcl.ply").c_str()); //ok
 			kv3AppObj.writePclRgb(string(resultPath+to_string(masterCounter)+"_PclRgb.ply").c_str());//ok	
 			kv3AppObj.writePclRgbAsPCDfile(string(resultPath+to_string(masterCounter)+"_PclRgb.pcd").c_str());// 
-			
 
-
-//kv3AppObj.savekv3Dataset(resultPath, masterCounter, colorImgRegDepth, depthImg, kv3AppObj);	//write all
-
-/////////////////
-			//kv3AppObj.saveKv3Images(resultPath,masterCounter,kv3AppObj,widthOfPcl,resizeImgColor,resizeImgColorDepth,depthImg,colorImg);
-			//kv3AppObj.savekv3gravitydata(resultPath, masterCounter);
-
-		//kv3AppObj.savekv3PclDirect(resultPath); // no
-		//kv3AppObj.writeColorPcl1("/var/www/ramdev/writePCLRGB.ply"); //work, if it call allone
-//		kv3AppObj.createPclforPclLib(simplePcl);
-//		cout << "size: " << simplePcl->points.size() << endl;
-			//kv3AppObj.writeColorPcl1(resultPath); 
-			//kv3AppObj.writeColorPcl2(resultPath);
 			masterCounter++;
 		}//end if key()	
 		if(key == 'j'){ 
@@ -987,11 +977,6 @@ std::cout << " ---- Current path is " << cwd << '\n';
 		#endif
 
 		kv3AppObj.releaseAllkv3img();
-
-		//Viz3dObj.spinOnce(1, true);// frame rate 1s;
-		//Viz3dObj.spinOnce(0,false);
-		//Viz3dObj.spinOnce(0,true);
-
 	}//end while
 	cout << "---------- while loop exit" << endl;
 	kv3AppObj.releaseCapture();
@@ -1006,11 +991,22 @@ std::cout << " ---- Current path is " << cwd << '\n';
 	kv3odas kv3AppOdas = kv3odas(9000);
 	pthread_create(&thrOdas, NULL, kv3OdasServer, (kv3odas *)&kv3AppOdas);
 	kv3AppOdas.startOdasLive();
+
+	if(kv3AppOdas != nullptr){
+		string strWinOdas = string("ODAS - Open embeddeD Audio System");
+		cv::namedWindow( strWinOdas, cv::WINDOW_AUTOSIZE|cv::WINDOW_GUI_NORMAL);
+
+		kv3AppOdas->getNearesSoundObj(idx, x, y, z, len);
+		Mat trImg = kv3AppOdas->drawOdasTrackingData(idx, x, y, z);
+		imshow(strWinOdas,trImg);
+		//moveWindow(strWinOdas, w+w+72, win01.size().height+64);	
+	}
 */
 	//audioMeasurement audioM = audioMeasurement();
 	//showKv2Demo(&kv3AppOdas, &audioM);
 	//showKv2Demo(nullptr, &audioM);
 	//showKv2Demo(&kv3AppOdas, nullptr);
+
 #endif
 
 	return 0;

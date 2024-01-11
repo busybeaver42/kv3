@@ -18,8 +18,10 @@
 *
 * @version 1.0
 *************************************************************/
+
 #ifndef PCLUTILITYS_H_
 #define PCLUTILITYS_H_
+#ifdef USE_PCL
 
 #include <iostream>
 #include <thread>
@@ -257,3 +259,4 @@ public:
 };
 
 #endif /* PCLUTILITYS_H_ */
+#endif 

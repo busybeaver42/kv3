@@ -1,0 +1,978 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "bin/kv3"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_executable",
+			"link_directories",
+			"find_package",
+			"target_link_libraries",
+			"add_definitions",
+			"include_directories"
+		],
+		"files" : 
+		[
+			"CMakeLists.txt",
+			"/home/joerg/opencv_root/opencv/build/OpenCVConfig.cmake"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 71,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 25,
+				"parent" : 0
+			},
+			{
+				"file" : 1,
+				"parent" : 2
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 143,
+				"parent" : 3
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 73,
+				"parent" : 0
+			},
+			{
+				"command" : 4,
+				"file" : 0,
+				"line" : 24,
+				"parent" : 0
+			},
+			{
+				"command" : 4,
+				"file" : 0,
+				"line" : 32,
+				"parent" : 0
+			},
+			{
+				"command" : 4,
+				"file" : 0,
+				"line" : 49,
+				"parent" : 0
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 59,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-O3 -DNDEBUG"
+				},
+				{
+					"fragment" : "-std=c++14"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 6,
+					"define" : "USE_CV"
+				},
+				{
+					"backtrace" : 7,
+					"define" : "USE_CVGUI"
+				},
+				{
+					"backtrace" : 8,
+					"define" : "USE_ODAS"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 9,
+					"path" : "/media/hd2/dev/60_kinectV3/10_onGithub/kv3/include"
+				},
+				{
+					"backtrace" : 9,
+					"path" : "/media/hd2/dev/60_kinectV3/10_onGithub/kv3/sup/kv3/include"
+				},
+				{
+					"backtrace" : 9,
+					"path" : "/media/hd2/dev/60_kinectV3/10_onGithub/kv3/sup/audio/include"
+				},
+				{
+					"backtrace" : 9,
+					"path" : "/media/hd2/dev/60_kinectV3/10_onGithub/kv3/sup/pcl/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv/build"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/cudev/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv/modules/core/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/cudaarithm/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv/modules/flann/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/hdf/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv/modules/imgproc/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/intensity_transform/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv/modules/ml/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/phase_unwrapping/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/plot/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/quality/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/reg/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/surface_matching/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/viz/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/alphamat/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/cudafilters/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/cudaimgproc/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/cudawarping/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv/modules/dnn/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/dnn_superres/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv/modules/features2d/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/freetype/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/fuzzy/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/hfs/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/img_hash/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv/modules/imgcodecs/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/line_descriptor/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv/modules/photo/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/saliency/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/text/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv/modules/videoio/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/xphoto/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/barcode/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv/modules/calib3d/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/cudacodec/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/cudafeatures2d/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/cudastereo/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/cvv/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/datasets/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv/modules/highgui/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/mcc/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv/modules/objdetect/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/rapid/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/shape/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/structured_light/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv/modules/ts/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv/modules/video/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/wechat_qrcode/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/xfeatures2d/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/ximgproc/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/xobjdetect/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/aruco/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/bgsegm/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/bioinspired/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/ccalib/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/cudabgsegm/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/cudalegacy/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/cudaobjdetect/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/dnn_objdetect/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/dpm/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/face/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv/modules/gapi/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/optflow/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/sfm/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv/modules/stitching/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/tracking/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/cudaoptflow/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/stereo/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/superres/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/home/joerg/opencv_root/opencv_contrib/modules/videostab/include"
+				}
+			],
+			"language" : "CXX",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					5
+				],
+				"standard" : "14"
+			},
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7
+			]
+		}
+	],
+	"id" : "kv3::@6890427a1f51a3e7e1df",
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "-O3 -DNDEBUG",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-L/usr/local/cuda/lib64",
+				"role" : "libraryPath"
+			},
+			{
+				"fragment" : "-Wl,-rpath,/usr/local/cuda/lib64:/home/joerg/opencv_root/opencv/build/lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_gapi.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_stitching.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_alphamat.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_aruco.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_barcode.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_bgsegm.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_bioinspired.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_ccalib.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_cudabgsegm.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_cudafeatures2d.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_cudaobjdetect.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_cudastereo.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_cvv.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_dnn_objdetect.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_dnn_superres.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_dpm.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_face.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_freetype.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_fuzzy.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_hdf.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_hfs.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_img_hash.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_intensity_transform.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_line_descriptor.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_mcc.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_quality.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_rapid.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_reg.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_saliency.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_sfm.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_stereo.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_structured_light.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_superres.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_surface_matching.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_tracking.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_videostab.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_viz.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_wechat_qrcode.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_xfeatures2d.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_xobjdetect.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_xphoto.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lk4a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lk4arecord",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lasound",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lpthread",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_shape.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_highgui.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_datasets.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_plot.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_text.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_ml.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_phase_unwrapping.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_cudacodec.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_videoio.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_cudaoptflow.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_cudalegacy.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_cudawarping.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_optflow.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_ximgproc.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_video.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_imgcodecs.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_objdetect.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_calib3d.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_dnn.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_features2d.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_flann.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_photo.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_cudaimgproc.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_cudafilters.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_imgproc.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_cudaarithm.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_core.so.4.7.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/home/joerg/opencv_root/opencv/build/lib/libopencv_cudev.so.4.7.0",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "kv3",
+	"nameOnDisk" : "kv3",
+	"paths" : 
+	{
+		"build" : ".",
+		"source" : "."
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/main.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "sup/kv3/src/kv3.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "sup/audio/src/kv3audio.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "sup/audio/src/kv3audiovisu.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "sup/audio/src/kv3odas.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "sup/audio/src/audioMeasurement.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "sup/pcl/src/pclApp.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "sup/pcl/src/pclUtilitys.cpp",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "EXECUTABLE"
+}

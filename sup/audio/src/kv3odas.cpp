@@ -161,7 +161,11 @@ void kv3odas::startOdasLive(){
         int soundDeviceId = std::stoi(strToProof.substr(indexDevice+7, 1));
         cout << "Azure Kinect Microphone Array --- soundCardId: " << soundCardId << " soundDeviceId: " << soundDeviceId << endl;
 
-        string strPathToCfg = string("/media/hd2/dev/kinectV3/kv3/cfg/");
+        //string pathToBg = String("../../assets/bg_1920_rusty.jpg");
+        //string strPathToCfg = string("/media/hd2/dev/kinectV3/kv3/cfg/");
+        string strPathToCfg = string("/media/hd2/dev/60_kinectV3/10_onGithub/kv3/cfg/");
+        
+        //string strPathToCfg = string("../../cfg/");
         string strOdasCfgFile = string("");
         if(soundCardId == 0){            
             strOdasCfgFile = string("kv3OdasSocketCard0.cfg");            
@@ -172,6 +176,9 @@ void kv3odas::startOdasLive(){
         if(soundCardId == 2){            
             strOdasCfgFile = string("kv3OdasSocketCard2.cfg");            
         }        
+        if(soundCardId == 3){            
+            strOdasCfgFile = string("kv3OdasSocketCard3.cfg");            
+        }           
         string cmd03 = string("sudo ./odaslive -vc ") + strPathToCfg + strOdasCfgFile;
 
 
