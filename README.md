@@ -1,4 +1,4 @@
-# kv3
+![Bildschirmfoto von 2024-01-11 22-23-40](https://github.com/busybeaver42/kv3/assets/68555874/2e85cc25-4ab4-48bb-9b04-6c199e03b403)# kv3
 ## Kinect Azure Framework
 If you like my little framework, be a friend and donate little money
 
@@ -58,7 +58,18 @@ My motivation was to use the microsoft kinect azure driver / API and make all mo
     doxywizard Doxyfile
     And create your documentation (press lower down corner the <next> button several time and
     at the end press the <Run doxygen> button in the upper left corner )
+    
+#### ODAS
 
+    git checkout odas
+    ./bin/kv3
+    cd /odas/build/bin
+    sudo ./odaslive -vc /odas/config/odaslive/kv3Socket.cfg
+
+    perhaps you have to modify before the configuration file "kv3Socket.cfg". 
+    use: arecord -l to get information you need to modify the card and device id inside the configuration file.
+    You will found a lot of example configuration files below /kv3/cfg/... 
+       
     
 ### kv3 GUI - with pointcloud visualisation
 ![Alt-Text](/assets/kv3gui01.png "kv3 GUI - pointcloud")
@@ -68,6 +79,9 @@ My motivation was to use the microsoft kinect azure driver / API and make all mo
 
 ### kv3 GUI - with mesh with normals visualisation
 ![Alt-Text](/assets/kv3gui03.png "kv3 GUI - smooth mesh via normals")
+
+### kv3 GUI ODAS
+![Alt-Text](/assets/kv3guiOdas.png "kv3 GUI ODAS")
 
 #### Control Keys
     key <1> - Mode 3: RGB 1920x1080 ; Depth 1024x1024 
