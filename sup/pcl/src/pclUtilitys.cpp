@@ -3310,7 +3310,7 @@ pcl::PointCloud<pcl::FPFHSignature33>::Ptr pclUtilitys::compute_fpfh_feature(pcl
     est_fpfh.compute(*fpfh);
     return fpfh;
 }
-#endif
+
 
 /**
   * meshing via Poisson
@@ -3644,3 +3644,4 @@ void pclUtilitys::PointCloud2Vector3d (pcl::PointCloud<PointXYZ>::Ptr cloud, pcl
 	i++;
 	}
 }
+#endif

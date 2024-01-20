@@ -16,9 +16,9 @@ find_package(k4a REQUIRED)
 # ----------------------------------------------------------------------------
 OPTION(ENABLE_K4ABT "Enable k4abt support" OFF)
 OPTION(ENABLE_ODAS "Enable ODAS support" OFF)
-OPTION(ENABLE_PCL "Enable PCL support" ON)
-OPTION(ENABLE_OpenCV "Enable OpenCV support" ON)
-OPTION(ENABLE_OpenCvGui "Enable OpenCV GUI" ON)
+OPTION(ENABLE_PCL "Enable PCL support" OFF)
+OPTION(ENABLE_OpenCV "Enable OpenCV support" OFF)
+OPTION(ENABLE_OpenCvGui "Enable OpenCV GUI" OFF)
 
 if(ENABLE_OpenCV)
   add_definitions(-DUSE_CV)
