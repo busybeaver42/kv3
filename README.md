@@ -59,12 +59,16 @@ My motivation was to use the microsoft kinect azure driver / API and make all mo
     at the end press the <Run doxygen> button in the upper left corner )
     
 #### ODAS (Open embeddeD Audition System)
-    based on following github repro, I have create an example to use the ODAS information from the ODAS live system.
+    based on following github repro, I have create an example to use the 
+    ODAS information from the ODAS live system.
     https://github.com/introlab/odas
         
-    You have to install this repro before. Afterwards, my application can read and show the ODAS position data.
+    You have to install the ODAS repro before. 
+    Afterwards, my application can read and show the ODAS position data.
     The ODAS system need to know on which card and device the kinect azure is located.
-    This example show how you can use the ODAS live system information in your own application in together with kinect azure image streams and rendering.
+    This example shows you how to use odas live system information in your
+    own application, together with the datastream and rendering from the Kinect Azure.
+    
     git checkout odas
     ./bin/kv3
     cd /odas/build/bin
