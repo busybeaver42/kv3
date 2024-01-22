@@ -58,15 +58,20 @@ My motivation was to use the microsoft kinect azure driver / API and make all mo
     And create your documentation (press lower down corner the <next> button several time and
     at the end press the <Run doxygen> button in the upper left corner )
     
-#### ODAS
-
+#### ODAS (Open embeddeD Audition System)
+    based on following github repro, I have create an example to use the ODAS information from the ODAS live system.
+    https://github.com/introlab/odas
+        
+    You have to install this repro before. Afterwards, my application can read and show the ODAS position data.
+    The ODAS system need to know on which card and device the kinect azure is located.
+    This example show how you can use the ODAS live system information in your own application in together with kinect azure image streams and rendering.
     git checkout odas
     ./bin/kv3
     cd /odas/build/bin
     sudo ./odaslive -vc /odas/config/odaslive/kv3Socket.cfg
 
     perhaps you have to modify before the configuration file "kv3Socket.cfg". 
-    use: arecord -l to get information you need to modify the card and device id inside the configuration file.
+    use: arecord -l to get information you need to modify the card and device id inside the configuration file (modify it at line 20 - card and 21 - device).
     You will found a lot of example configuration files below /kv3/cfg/... 
        
     
