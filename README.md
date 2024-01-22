@@ -78,6 +78,11 @@ My motivation was to use the microsoft kinect azure driver / API and make all mo
     use: arecord -l to get information you need to modify the card and device id
     inside the configuration file (modify it at line 20 - card and 21 - device).
     You will found a lot of example configuration files below /kv3/cfg/... 
+
+    hint: perhaps you have to modify the source code for the default sound device
+    equal to card and device of the kinect azure inside file
+    ../kv3/sup/audio/include/kv3audio.h
+    71 #define DEFAULT_DEVICE      "plughw:2,0" // plughw:card,device
        
     
 ### kv3 GUI - with pointcloud visualisation
