@@ -75,7 +75,8 @@ My motivation was to use the microsoft kinect azure driver / API and make all mo
     sudo ./odaslive -vc /odas/config/odaslive/kv3Socket.cfg
 
     perhaps you have to modify before the configuration file "kv3Socket.cfg". 
-    use: arecord -l to get information you need to modify the card and device id inside the configuration file (modify it at line 20 - card and 21 - device).
+    use: arecord -l to get information you need to modify the card and device id
+    inside the configuration file (modify it at line 20 - card and 21 - device).
     You will found a lot of example configuration files below /kv3/cfg/... 
        
     
