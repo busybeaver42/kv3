@@ -1,6 +1,4 @@
-# kv3
-
-## Kinect Azure Framework
+## Kinect Azure Framework - kv3
 If you like my little framework, be a friend and donate little money
 
 e.g. for a cup of coffee (Paypal: spende@angermayer.de).
