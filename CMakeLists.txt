@@ -15,7 +15,7 @@ find_package(k4a REQUIRED)
 # Options
 # ----------------------------------------------------------------------------
 OPTION(ENABLE_K4ABT "Enable k4abt support" OFF)
-OPTION(ENABLE_ODAS "Enable ODAS support" ON)
+OPTION(ENABLE_ODAS "Enable ODAS support" OFF)
 OPTION(ENABLE_PCL "Enable PCL support" OFF)
 OPTION(ENABLE_OpenCV "Enable OpenCV support" ON)
 OPTION(ENABLE_OpenCvGui "Enable OpenCV GUI" ON)
