@@ -47,6 +47,7 @@ My motivation was to use the microsoft kinect azure driver / API and make all mo
 
     ./bin/kv3
 
+    
 #### API documentation
     inside git repository:
    ../kv3/doxyDocu/genDocu/html/index.html
