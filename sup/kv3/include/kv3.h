@@ -120,6 +120,7 @@ class kv3 {
 		void getIMU(k4a::Vector& vec);
 		void getIMU(float &x, float &y, float &z);
 		void getIMUinDeg(float &x, float &y, float &z);
+		void getIMUinEuler(float &x, float &y, float &z);
 		void getGravity(k4a::Vector& vec);
 		void getGravity(float &x, float &y, float &z);
 		#ifdef USE_CV

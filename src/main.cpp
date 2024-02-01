@@ -77,7 +77,9 @@ void addkv3TextToImg(const cv::Mat &in, cv::Mat &out, kv3 &kv3AppObj ){
 		float accDegX;
 		float accDegY;
 		float accDegZ;
-		kv3AppObj.getIMUinDeg(accDegX, accDegY, accDegZ);
+
+		//kv3AppObj.getIMUinDeg(accDegX, accDegY, accDegZ);
+		kv3AppObj.getIMUinEuler(accDegX, accDegY, accDegZ);
 
 		int xOffset = (int)(26);
 		int yOffset = (int)(26);
@@ -158,8 +160,8 @@ void addkv3TextToImg(const cv::Mat &in, cv::Mat &out, kv3 &kv3AppObj ){
 		std::stringstream strStreamAccDegX;  
 		strStreamAccX << std::fixed << std::setprecision(3) << accX;
 		strStreamAccDegX << std::fixed << std::setprecision(3) << accDegX;
-		//string strAccX = "IMU acc X: " + strStreamAccX.str() + " deg: " + strStreamAccDegX.str(); 
-		string strAccX = "IMU acc X in deg: " + strStreamAccDegX.str(); 
+		string strAccX = "IMU acc X: " + strStreamAccX.str() + " deg: " + strStreamAccDegX.str(); 
+		//string strAccX = "Pitch in deg: " + strStreamAccDegX.str(); 
 		cv::putText(out, 
             strAccX, //text
             cv::Point(xOffset, accOffset),
@@ -172,8 +174,8 @@ void addkv3TextToImg(const cv::Mat &in, cv::Mat &out, kv3 &kv3AppObj ){
 		std::stringstream strStreamAccDegY;
 		strStreamAccY << std::fixed << std::setprecision(3) << accY;
 		strStreamAccDegY << std::fixed << std::setprecision(3) << accDegY;
-		//string strAccY = "IMU acc Y: " + strStreamAccY.str() + " deg: " + strStreamAccDegY.str();
-		string strAccY = "IMU acc Y in deg: " + strStreamAccDegY.str();
+		string strAccY = "IMU acc Y: " + strStreamAccY.str() + " deg: " + strStreamAccDegY.str();
+		//string strAccY = "Roll in deg: " + strStreamAccDegY.str();
 		cv::putText(out, 
             strAccY, //text
             cv::Point(xOffset, accOffset + yDelta),
@@ -186,8 +188,8 @@ void addkv3TextToImg(const cv::Mat &in, cv::Mat &out, kv3 &kv3AppObj ){
 		std::stringstream strStreamAccDegZ;
 		strStreamAccZ << std::fixed << std::setprecision(3) << accZ;
 		strStreamAccDegZ << std::fixed << std::setprecision(3) << accDegZ;
-		//string strAccZ = "IMU acc Z: " + strStreamAccZ.str() + " deg: " + strStreamAccDegZ.str();
-		string strAccZ = "IMU acc Z in deg: " + strStreamAccDegZ.str();
+		string strAccZ = "IMU acc Z: " + strStreamAccZ.str() + " deg: " + strStreamAccDegZ.str();
+		//string strAccZ = "No Yaw in deg: " + strStreamAccDegZ.str();
 		cv::putText(out, 
             strAccZ, //text
             cv::Point(xOffset, accOffset + yDelta + yDelta),

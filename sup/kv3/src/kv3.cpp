@@ -1627,6 +1627,44 @@ void kv3::getIMUinDeg(float &x, float &y, float &z){
 }
 
  /**
+  * get euler angle data in float and degree\n
+  * \n
+  * input:void\n
+  * \param	void  
+  * output: accelaration in float degree \n
+  * \param	float &x, float &y, float &z
+  * \return	void
+  */
+void kv3::getIMUinEuler(float &x, float &y, float &z){
+    float roll;
+    float pitch;
+    float yaw;
+
+    float accelX = kv3::imuAcc.X;
+    float accelY = kv3::imuAcc.Y;
+    float accelZ = kv3::imuAcc.Z;
+
+    float magX = kv3::imuGravity.X;
+    float magY = kv3::imuGravity.Y;
+    float magZ = kv3::imuGravity.Z;    
+
+    pitch = atan2 (accelY ,( sqrt ((accelX * accelX) + (accelZ * accelZ))));
+    roll = atan2(-accelX ,( sqrt((accelY * accelY) + (accelZ * accelZ))));    
+
+
+    /*//yaw with magnetometer
+    float Yh = (magY * cos(roll)) - (magZ * sin(roll));
+    float Xh = (magX * cos(pitch))+(magY * sin(roll)*sin(pitch)) + (magZ * cos(roll) * sin(pitch));
+    yaw = atan2(Yh, Xh);
+    */
+
+    float umrechnungsfactor = 57.296;// Rad to Angle
+    x = roll*umrechnungsfactor;
+    y = pitch*umrechnungsfactor;
+    z = yaw*umrechnungsfactor;
+}
+
+ /**
   * get gravity vector\n
   * \n
   * input:void\n
