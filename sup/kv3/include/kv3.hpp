@@ -13,8 +13,8 @@
 * @version 1.0
 *************************************************************/
 
-#ifndef KV3_H_
-#define KV3_H_
+#ifndef KV3_HPP_
+#define KV3_HPP_
 
 #include <iostream>
 #include <thread>
@@ -45,6 +45,7 @@ using namespace std;
 #include <opencv2/imgproc.hpp>
 #include <opencv2/imgcodecs.hpp>
 #include <opencv2/viz.hpp>
+#include <opencv2/dnn.hpp>
 using namespace cv;
 #endif
 
@@ -74,7 +75,10 @@ class kv3 {
 		void setup02(); //RGB highest resolution (3840x2160) - 15 FPS - depth 640x576; 0.5 - 3.86 m
 		void setup03(); //RGB best support (1920x1080) - 15 FPS - depth 1024x1024 ; 0.25 - 2.21 m
 		void setup04(); //RGB best support (1280x720 MJPEG/YUY2/NV12) - 30 FPS - long range depth 320x288 ; 0.5 - 5.46 m
-		void setup05(); //RGB highest resolution (3840x2160) - 15 FPS - depth 640x576; 0.5 - 3.86 m
+		void setup05(); //RGB resolution (3840x2160) - 15 FPS - depth 640x576; 0.50 - 3.86 m
+		void setup06(); //RGB 4:3 resolution (2048x1536) - 15 FPS - depth 512x512; 0.25 - 2.88 m
+		void setup07(); //RGB 4:3 highest resolution (4096x3072) -  5 FPS - depth 512x512; 0.25 - 2.88 m 
+
 		void getDepthFieldResolution(int &x, int &y);
 		void getRgbResolution(int &x, int &y);
  		void setupCalib();
@@ -85,6 +89,7 @@ class kv3 {
 		void updatePclforPclLib(pcl::PointCloud<pcl::PointXYZ>::Ptr& outPcl, k4a_image_t k4aPcl);
 		void updatePclRgbforPclLib(pcl::PointCloud<pcl::PointXYZRGB>::Ptr& outPcl);
 		#endif
+		
 		void writePCL(const char *file_name);
 		void writePclRgb(const char *file_name);
 		void writePclRgbAsPCDfile(const char *file_name);
@@ -110,6 +115,11 @@ class kv3 {
 		void capDepth();
 		void capIr();
 		void capPclDepth();
+		void getPcl3DPointFrom2DPoint(const Point &inPo2D, Point3d &outPclPoint);
+		bool transformColor2DpointToDepth2Dpoint(const Point &inPo2D, Point &outPo2D);
+		void convertK4aImageToOpenCvImage(const k4a_image_t &in, const int format, cv::Mat &out);
+		void convertOpenCvImageToK4aImage(const cv::Mat &in, const int &format, k4a_image_t &out);
+
 		#endif
 		k4a::Vector extract_gravity_from_imu(k4a::Vector& imuAcc);
 		string getSerialNumber(k4a_device_t device);
@@ -120,12 +130,18 @@ class kv3 {
 		void getIMU(k4a::Vector& vec);
 		void getIMU(float &x, float &y, float &z);
 		void getIMUinDeg(float &x, float &y, float &z);
-		void getIMUinEuler(float &x, float &y, float &z);
 		void getGravity(k4a::Vector& vec);
 		void getGravity(float &x, float &y, float &z);
+		void getXYZrotationValuesInDeg(float &x, float &y, float &z);
 		#ifdef USE_CV
 		void getIntrinsicIr(cv::Mat &camMatrix, cv::Mat &coeff);
 		void getIntrinsicColor(cv::Mat &camMatrix, cv::Mat &coeff);
+		void getPrincipalPointColor(Point &po);
+		void getPrincipalPoint2fColor(Point2f &po);
+		void getPrincipalPointIr(Point &po);
+		void getPrincipalPoint2fIr(Point2f &po);		
+		void drawPrincipalPointColor(const cv::Mat &in, cv::Mat &out);
+		void drawPrincipalPointIR(const cv::Mat &in, cv::Mat &out);
 		int detectCurrentImageBlurStatusViaLaplacian(const cv::Mat &img);
 		int detectCurrentImageBlurStatusViaFFT(const cv::Mat &img, const double threshold);
 		void getCvColorImg(cv::Mat &img);
@@ -148,6 +164,8 @@ class kv3 {
 		void calcCvPclCamResize(const cv::Mat &depth, cv::Mat &cvPcl, const int tarW, const int tarH, const bool bColor);
 		void calcCvPclCamIr(const cv::Mat &depth, cv::Mat &cvPcl);
 		void calcCvPclSimple(const cv::Mat &depth, cv::Mat &cvPcl);
+		void calcAngleBetween3DvectorPoints(const Point3f &p1, const Point3f &p2, double &outAngle);
+		void calcDeltaAngleFromPrincipalPointTofixPoint(const Point3d &poFix, float &ax, float &ay);
 		void saveKv3Images(string path, long int counter, kv3 &kv3AppObj, int widthOfPcl, Mat &resizeImgColor, Mat &resizeImgColorDepth, Mat &regDepth, Mat &colorImg);
 		void saveColorImg(string path, long int counter, Mat &colorImg);
 		void saveRGBDImg(string path, long int counter, Mat &RGB, Mat&D);
@@ -175,7 +193,7 @@ class kv3 {
 		k4a::Vector imuGravity;
 
 		//PLC
-		static k4a_image_t kv3_depth_image;
+		//static k4a_image_t kv3_depth_image;
     	static k4a_image_t kv3_xy_table;
     	static k4a_image_t kv3ImPcl;
 		static k4a_image_t kv3ImPclReg;
@@ -217,4 +235,4 @@ class kv3 {
 		static int fpsMode;
 };
 
-#endif /* KV3_H_ */
+#endif /* KV3_HPP_ */

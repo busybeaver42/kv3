@@ -7,7 +7,7 @@
  */
 // thx for the doxygen tutorial to: https://darkognu.eu/programming/tutorials/doxygen_tutorial_cpp/
 
-#include "kv3.h"
+#include "kv3.hpp"
 
 k4a_device_configuration_t kv3::config;
 
@@ -65,7 +65,7 @@ cv::Mat kv3::distCoeffsKv3Ir = (Mat_<double>(1,8) << 0.653048, 0.234488, 4.05565
 cv::Mat kv3::distCoeffsKv3Color = (Mat_<double>(1,8) << 0.36451, -2.55157, 3.19741e-05, -0.000113713, 1.49545, 0.244343, -2.36779, 1.41759);
 #endif
 //PLC
-k4a_image_t kv3::kv3_depth_image = NULL;
+//k4a_image_t kv3::kv3_depth_image = NULL;
 k4a_image_t kv3::kv3_xy_table = NULL;
 k4a_image_t kv3::kv3ImPclReg = NULL;
 k4a_image_t kv3::kv3ImPcl = NULL;
@@ -482,13 +482,14 @@ void kv3::setup01(){
     */
     //k4a_device_configuration_t config = K4A_DEVICE_CONFIG_INIT_DISABLE_ALL;
 
+    setFpsMode(1);
     setupImFormatAndFPSconfig();
-    config.color_resolution = K4A_COLOR_RESOLUTION_720P; //K4A_COLOR_RESOLUTION_1080P;//K4A_COLOR_RESOLUTION_2160P;//K4A_COLOR_RESOLUTION_3072P;
-    rgbWidth = 1280;
-    rgbHeight = 720;
-    config.depth_mode = K4A_DEPTH_MODE_NFOV_UNBINNED ;
-    depthFieldWidth = 640;
-	depthFieldHeight = 576;
+    config.color_resolution = K4A_COLOR_RESOLUTION_1080P;//K4A_COLOR_RESOLUTION_720P;
+    rgbWidth = 1920;
+    rgbHeight = 1080;    
+    config.depth_mode = K4A_DEPTH_MODE_WFOV_UNBINNED; //1024x1024 ; 0.25 - 2.21 m
+    depthFieldWidth = 1024;
+	depthFieldHeight = 1024;
 
     config.synchronized_images_only = true;
    
@@ -607,7 +608,7 @@ void kv3::setup02(){
             k4a_device_close(device);
         }
     }
-
+    setFpsMode(0);
     setupImFormatAndFPSconfig();
     config.color_resolution = K4A_COLOR_RESOLUTION_3072P; 
     rgbWidth = 4096;
@@ -683,14 +684,14 @@ void kv3::setup03(){
             k4a_device_close(device);
         }
     }
-
+    setFpsMode(2);
     setupImFormatAndFPSconfig();
-    config.color_resolution = K4A_COLOR_RESOLUTION_1080P;//K4A_COLOR_RESOLUTION_720P;
-    rgbWidth = 1920;
-    rgbHeight = 1080;    
-    config.depth_mode = K4A_DEPTH_MODE_WFOV_UNBINNED; //1024x1024 ; 0.25 - 2.21 m
-    depthFieldWidth = 1024;
-	depthFieldHeight = 1024;
+    config.color_resolution = K4A_COLOR_RESOLUTION_720P; //K4A_COLOR_RESOLUTION_1080P;//K4A_COLOR_RESOLUTION_2160P;//K4A_COLOR_RESOLUTION_3072P;
+    rgbWidth = 1280;
+    rgbHeight = 720;
+    config.depth_mode = K4A_DEPTH_MODE_NFOV_UNBINNED ;
+    depthFieldWidth = 640;
+	depthFieldHeight = 576;
 
     config.synchronized_images_only = true;
 
@@ -760,6 +761,7 @@ void kv3::setup04(){
         }
     }
 
+    setFpsMode(2);
     setupImFormatAndFPSconfig();
     config.color_resolution = K4A_COLOR_RESOLUTION_720P;
     rgbWidth = 1280;
@@ -836,7 +838,7 @@ void kv3::setup05(){
             k4a_device_close(device);
         }
     }
-
+    setFpsMode(0);
     setupImFormatAndFPSconfig();
     config.color_resolution = K4A_COLOR_RESOLUTION_3072P; 
     rgbWidth = 4096;
@@ -882,6 +884,159 @@ void kv3::setup05(){
     }
     readCurrentColorMode();
     currentSetupId = 5;
+}
+
+/**
+  * setup 06 the MS Kinect Azure modes\n
+  * input:\n
+  * \param	void
+  * Output:\n
+  * \param	void
+  * \return	void
+  */
+void kv3::setup06(){
+    if(this->device != NULL){
+        k4a_device_close(this->device);            
+    }
+
+    uint32_t device_count = k4a_device_get_installed_count();
+    if (device_count == 0)
+    {
+        std::cout << "No K4A devices found" << endl;
+        exit(0);
+    }
+
+    if (K4A_RESULT_SUCCEEDED != k4a_device_open(K4A_DEVICE_DEFAULT, &device))
+    {
+        std::cout << "No K4A devices found" << endl;
+        if (device != NULL)
+        {
+            k4a_device_close(device);
+        }
+    }
+
+    setFpsMode(2);
+    setupImFormatAndFPSconfig();
+    config.color_resolution = K4A_COLOR_RESOLUTION_1536P; 
+    rgbWidth = 2048;
+    rgbHeight = 1536;    
+    config.depth_mode = K4A_DEPTH_MODE_WFOV_2X2BINNED;//K4A_DEPTH_MODE_WFOV_UNBINNED;6
+    depthFieldWidth = 512;
+	depthFieldHeight = 512;
+
+    config.synchronized_images_only = true;
+   
+    if (K4A_RESULT_SUCCEEDED != k4a_device_get_calibration(device, config.depth_mode, config.color_resolution, &calibration))
+    {
+        std::cout << "Failed to get calibration" << endl;
+        exit(0);
+    }
+
+        k4a_image_create(K4A_IMAGE_FORMAT_CUSTOM,
+                        calibration.depth_camera_calibration.resolution_width,
+                        calibration.depth_camera_calibration.resolution_height,
+                        calibration.depth_camera_calibration.resolution_width * (int)sizeof(k4a_float2_t),
+                        &kv3_xy_table);
+
+        create_xy_table(&calibration, kv3_xy_table);
+
+        k4a_image_create(K4A_IMAGE_FORMAT_CUSTOM,
+                        calibration.depth_camera_calibration.resolution_width,
+                        calibration.depth_camera_calibration.resolution_height,
+                        calibration.depth_camera_calibration.resolution_width * 3 * (int)sizeof(int16_t),
+                        &kv3ImPcl);
+
+    setupCalib(); //get intrinsic data from color and depth cam
+
+    if (K4A_RESULT_SUCCEEDED != k4a_device_start_cameras(device, &config))
+    {
+        std::cout << "Failed to start cameras" << endl;
+        exit(0);
+    }
+    if (K4A_RESULT_SUCCEEDED != k4a_device_start_imu(device))
+    {
+        std::cout <<"Failed to get imu data from capture" << endl;
+        exit(0);
+    }
+    readCurrentColorMode();
+    currentSetupId = 6;
+}
+
+
+/**
+  * setup 07 the MS Kinect Azure modes\n
+  * input:\n
+  * \param	void
+  * Output:\n
+  * \param	void
+  * \return	void
+  */
+void kv3::setup07(){
+    if(this->device != NULL){
+        k4a_device_close(this->device);            
+    }
+
+    uint32_t device_count = k4a_device_get_installed_count();
+    if (device_count == 0)
+    {
+        std::cout << "No K4A devices found" << endl;
+        exit(0);
+    }
+
+    if (K4A_RESULT_SUCCEEDED != k4a_device_open(K4A_DEVICE_DEFAULT, &device))
+    {
+        std::cout << "No K4A devices found" << endl;
+        if (device != NULL)
+        {
+            k4a_device_close(device);
+        }
+    }
+    setFpsMode(0);
+    setupImFormatAndFPSconfig();
+    config.color_resolution = K4A_COLOR_RESOLUTION_3072P; 
+    rgbWidth = 3072;
+    rgbHeight = 4096;    
+    config.depth_mode = K4A_DEPTH_MODE_WFOV_2X2BINNED;//K4A_DEPTH_MODE_WFOV_UNBINNED;;
+    depthFieldWidth = 512;
+	depthFieldHeight = 512;
+
+    config.synchronized_images_only = true;
+   
+    if (K4A_RESULT_SUCCEEDED !=
+        k4a_device_get_calibration(device, config.depth_mode, config.color_resolution, &calibration))
+    {
+        std::cout << "Failed to get calibration" << endl;
+        exit(0);
+    }
+
+        k4a_image_create(K4A_IMAGE_FORMAT_CUSTOM,
+                        calibration.depth_camera_calibration.resolution_width,
+                        calibration.depth_camera_calibration.resolution_height,
+                        calibration.depth_camera_calibration.resolution_width * (int)sizeof(k4a_float2_t),
+                        &kv3_xy_table);
+
+        create_xy_table(&calibration, kv3_xy_table);
+
+        k4a_image_create(K4A_IMAGE_FORMAT_CUSTOM,
+                        calibration.depth_camera_calibration.resolution_width,
+                        calibration.depth_camera_calibration.resolution_height,
+                        calibration.depth_camera_calibration.resolution_width * 3 * (int)sizeof(int16_t),
+                        &kv3ImPcl);
+
+    setupCalib(); //get intrinsic data from color and depth cam
+
+    if (K4A_RESULT_SUCCEEDED != k4a_device_start_cameras(device, &config))
+    {
+        std::cout << "Failed to start cameras" << endl;
+        exit(0);
+    }
+    if (K4A_RESULT_SUCCEEDED != k4a_device_start_imu(device))
+    {
+        std::cout <<"Failed to get imu data from capture" << endl;
+        exit(0);
+    }
+    readCurrentColorMode();
+    currentSetupId = 7;
 }
 
  /**
@@ -1099,7 +1254,6 @@ void kv3::calcCvPclSimple(const cv::Mat &depth, cv::Mat &cvPcl){
     y++;
     }
     cvPcl = bufferPcl.clone();
-
 }
 #endif
 
@@ -1627,44 +1781,6 @@ void kv3::getIMUinDeg(float &x, float &y, float &z){
 }
 
  /**
-  * get euler angle data in float and degree\n
-  * \n
-  * input:void\n
-  * \param	void  
-  * output: accelaration in float degree \n
-  * \param	float &x, float &y, float &z
-  * \return	void
-  */
-void kv3::getIMUinEuler(float &x, float &y, float &z){
-    float roll;
-    float pitch;
-    float yaw;
-
-    float accelX = kv3::imuAcc.X;
-    float accelY = kv3::imuAcc.Y;
-    float accelZ = kv3::imuAcc.Z;
-
-    float magX = kv3::imuGravity.X;
-    float magY = kv3::imuGravity.Y;
-    float magZ = kv3::imuGravity.Z;    
-
-    pitch = atan2 (accelY ,( sqrt ((accelX * accelX) + (accelZ * accelZ))));
-    roll = atan2(-accelX ,( sqrt((accelY * accelY) + (accelZ * accelZ))));    
-
-
-    /*//yaw with magnetometer
-    float Yh = (magY * cos(roll)) - (magZ * sin(roll));
-    float Xh = (magX * cos(pitch))+(magY * sin(roll)*sin(pitch)) + (magZ * cos(roll) * sin(pitch));
-    yaw = atan2(Yh, Xh);
-    */
-
-    float umrechnungsfactor = 57.296;// Rad to Angle
-    x = roll*umrechnungsfactor;
-    y = pitch*umrechnungsfactor;
-    z = yaw*umrechnungsfactor;
-}
-
- /**
   * get gravity vector\n
   * \n
   * input:void\n
@@ -1697,6 +1813,28 @@ void kv3::getGravity(float &x, float &y, float &z){
     z = kv3::imuGravity.Z;
 }
 
+void kv3::getXYZrotationValuesInDeg(float &x, float &y, float &z){
+    //https://ahrs.readthedocs.io/en/latest/filters/tilt.html
+    float ax = kv3::imuAcc.X;
+    float ay = kv3::imuAcc.Y;
+    float az = kv3::imuAcc.Z;
+    float mx = kv3::imuGravity.X;
+    float my = kv3::imuGravity.Y;
+    float mz = kv3::imuGravity.Z;
+    //Roll
+    float roll = atan2(ay,az);
+    //Pitch
+    float pitchIn = sqrt( (ay*ay) + (az*az)  );
+    float pitch = atan2(-ax,pitchIn);
+    //Tilt
+    float tilt = atan2( mz*sin(pitch) - my*cos(pitch), mx*cos(roll) + sin( my*sin(pitch)+mz*cos(pitch) ));  //atan2(-by,bx)
+
+    x = roll *  (float)180.0 / M_PI;
+    y = pitch * (float)180.0 / M_PI;
+    z = tilt *  (float)180.0 / M_PI;
+
+}
+
 #ifdef USE_CV
 void kv3::getIntrinsicIr(cv::Mat &camMatrix, cv::Mat &coeff){
     camMatrix = camMatrixKv3Ir;
@@ -1708,7 +1846,103 @@ void kv3::getIntrinsicColor(cv::Mat &camMatrix, cv::Mat &coeff){
 	coeff = distCoeffsKv3Color;
 }
 
+ /**
+  * deliver the principal point Color in int values\n
+  * \n
+  * input:void\n
+  * \param	void
+  * output: principal point as integer point \n
+  * \param	void
+  * \return	void
+  */
+void kv3::getPrincipalPointColor(Point &po){
+    po.x = (int)ceil(cx1);
+    po.y = (int)ceil(cy1);
+}
 
+ /**
+  * deliver the principal point Color in float values\n
+  * \n
+  * input:void\n
+  * \param	void
+  * output: principal point as float point \n
+  * \param	void
+  * \return	void
+  */
+void kv3::getPrincipalPoint2fColor(Point2f &po){
+    po.x = (float)cx1;
+    po.y = (float)cy1;
+}
+
+ /**
+  * deliver the principal point IR in int values\n
+  * \n
+  * input:void\n
+  * \param	void
+  * output: principal point as integer point \n
+  * \param	void
+  * \return	void
+  */
+void kv3::getPrincipalPointIr(Point &po){
+    po.x = (int)ceil(cx0);
+    po.y = (int)ceil(cy0);
+}
+
+ /**
+  * deliver the principal point IR in float values\n
+  * \n
+  * input:void\n
+  * \param	void
+  * output: principal point as float point \n
+  * \param	void
+  * \return	void
+  */
+void kv3::getPrincipalPoint2fIr(Point2f &po){
+    po.x = (float)cx0;
+    po.y = (float)cy0;
+}
+
+
+
+ /**
+  * draw into image the principal point from color as cross lines in gray color\n
+  * \n
+  * input:void\n
+  * \param	cv::Mat &img
+  * output: img with cross lines \n
+  * \param	void
+  * \return	void
+  */
+void kv3::drawPrincipalPointColor(const cv::Mat &in, cv::Mat &out){
+    out = in.clone();
+
+    Point p1 = Point(ceil(cx1),0);
+    Point p2 = Point(ceil(cx1), in.size().height);
+    line(out, p1, p2, Scalar(125, 125, 125), 1, LINE_8);
+    Point p3 = Point(0,ceil(cy1));
+    Point p4 = Point(in.size().width,ceil(cy1));
+    line(out, p3, p4, Scalar(125, 125, 125), 1, LINE_8);
+}
+
+ /**
+  * draw into image the principal point from IR as cross lines in gray color\n
+  * \n
+  * input:void\n
+  * \param	cv::Mat &img
+  * output: img with cross lines \n
+  * \param	void
+  * \return	void
+  */
+void kv3::drawPrincipalPointIR(const cv::Mat &in, cv::Mat &out){
+    out = in.clone();
+
+    Point p1 = Point(ceil(cx0),0);
+    Point p2 = Point(ceil(cx0), in.size().height);
+    line(out, p1, p2, Scalar(125, 125, 125), 1, LINE_8);
+    Point p3 = Point(0,ceil(cy0));
+    Point p4 = Point(in.size().width,ceil(cy0));
+    line(out, p3, p4, Scalar(125, 125, 125), 1, LINE_8);
+}
 
  /**
   * detect the blur level from an image via Fast Fourier Transformation\n
@@ -2445,6 +2679,59 @@ void kv3::convIrToVisible8BitGrayImg(const cv::Mat &src, cv::Mat &dest){
 #endif
 
 #ifdef USE_CV
+
+ /**
+  * calc angle between a two 3D vector\n
+  * \n
+  * input: fix Point 
+  * \param	Point3d
+  * output: angle x in degree, angle y in degree
+  * \param	float, float
+  * \return	void
+  */
+void kv3::calcAngleBetween3DvectorPoints(const Point3f &p1, const Point3f &p2, double &outAngle){
+    double skalarProduct = (p1.x*p2.x)+(p1.y*p2.y)+(p1.z*p2.z);
+    double P1length = sqrt( (p1.x*p1.x)+(p1.y*p1.y)+(p1.z*p1.z) );
+    double P2length = sqrt( (p2.x*p2.x)+(p2.y*p2.y)+(p2.z*p2.z) );
+    outAngle = acos( skalarProduct / (P1length*P2length) );
+}
+
+
+ /**
+  * calc angle between a 3D point and the Principal point ray\n
+  * \n
+  * input: fix Point 
+  * \param	Point3d
+  * output: angle x in degree, angle y in degree
+  * \param	float, float
+  * \return	void
+  */
+void kv3::calcDeltaAngleFromPrincipalPointTofixPoint(const Point3d &poFix, float &ax, float &ay){
+    Point3f p1; Point3f p2; Point3f p3;
+    double angle1; double angle2;
+
+    p1.x = (float)0; 
+    p1.y = (float)0;
+    p1.z = (float)1000.0;
+
+    p2.x = (float)poFix.x;
+    p2.y = (float)0;
+    p2.z = (float)poFix.z;
+
+    p3.x = (float)0;
+    p3.y = (float)poFix.y;
+    p3.z = (float)poFix.z;       
+
+    calcAngleBetween3DvectorPoints(p1, p2, angle1);
+    ax = (float)angle1 * (float)180.0 / M_PI;
+    calcAngleBetween3DvectorPoints(p1, p3, angle2);
+    ay = (float)angle2 * (float)180.0 / M_PI;
+
+    if(poFix.x < 0){ax = ax * -1;}
+    if(poFix.y < 0){ay = ay * -1;}
+}
+
+
  /**
   * save all kv3 CV images to path\n
   * \n
@@ -2828,7 +3115,11 @@ void kv3::setCurrentSetup(int id){
         case 4:
         kv3::setup04();
         case 5:
-        kv3::setup05();                                
+        kv3::setup05();    
+        case 6:
+        kv3::setup06();        
+        case 7:
+        kv3::setup07();                                        
         default:
         kv3::setup01();
     }
@@ -2862,9 +3153,161 @@ int kv3::getFpsMode(){
     return(fpsMode);
 }
 
+#ifdef USE_CV
+/**
+  * read the point cloud 3D point from kv3 sensor at 2D point position \n
+  * 
+  * input:\n
+  * \param	Point 2D 
+  * output:\n
+  * \param	Point 3D (internal grab from current kv3 PCL)
+  * \return	void
+  */
+void kv3::getPcl3DPointFrom2DPoint(const Point &inPo2D, Point3d &outPclPoint){
+    
+    int width = k4a_image_get_width_pixels(kv3ImDepth);
+    int height = k4a_image_get_height_pixels(kv3ImDepth);    
+    uint16_t *depth_data = (uint16_t *)(void *)k4a_image_get_buffer(kv3ImDepth);
+
+    k4a_float2_t *xy_table_data = (k4a_float2_t *)(void *)k4a_image_get_buffer(kv3_xy_table);
+    int widthXYtable = k4a_image_get_width_pixels(kv3_xy_table);
+    int heightXYtable = k4a_image_get_height_pixels(kv3_xy_table);
+
+    int i = inPo2D.y*width + inPo2D.x;
+    outPclPoint.x = xy_table_data[i].xy.x * depth_data[i];
+    outPclPoint.y = xy_table_data[i].xy.y * depth_data[i];
+    outPclPoint.z = depth_data[i];
+}
+
+/**
+  * read 2D point from color image and transform the point to "2D point inside deptg image\n
+  * 
+  * input:\n
+  * \param	Point 2D 
+  * output:\n
+  * \param	Point 2D
+  * \return	bool pointDetected
+  */
+bool kv3::transformColor2DpointToDepth2Dpoint(const Point &inPo2D, Point &outPo2D){
+    bool retvalue = false;
+    Mat imgCvPoint = Mat::zeros( imgColor.size(), CV_8UC4); 
+    Mat gray;
+    k4a_image_t imgSinglePointk4aDummyRGBA = NULL;
+
+    int i = 1;
+    int imax = 8;
+    while(i<imax){
+                
+        k4a_image_t imgk4aDummy = NULL;        
+        //detect a point with depth
+        int poSize = i;
+        line(imgCvPoint, inPo2D, inPo2D, Scalar(255, 255, 255), poSize, LINE_8); //set the point inside the image
+        convertOpenCvImageToK4aImage(imgCvPoint, 0, imgSinglePointk4aDummyRGBA);
+        //transform from 2D RGBA to 2D reg depth map
+        int width = k4a_image_get_width_pixels(kv3ImDepth);
+        int height = k4a_image_get_height_pixels(kv3ImDepth);
+        k4a_image_create(K4A_IMAGE_FORMAT_COLOR_BGRA32, width, height, width * 4 * (int)sizeof(uint8_t), &imgk4aDummy);
+        if(K4A_RESULT_SUCCEEDED != k4a_transformation_color_image_to_depth_camera(transformation, kv3ImDepth, imgSinglePointk4aDummyRGBA, imgk4aDummy))
+        {
+            cout << "Failed to compute transformed imgSinglePointk4aDummyRGBA to reg depth image" << endl;
+        }
+            // Store the image using opencv Mat
+            uint8_t* colorImageData = k4a_image_get_buffer(imgk4aDummy);
+            if(colorImageData == NULL){
+                printf(" ||||||||||||||||||| ERROR - BUFFER: imgk4aDummy");
+            }else{
+                convertK4aImageToOpenCvImage(imgk4aDummy, 2, gray);
+                int x = 0; int xmax = gray.size().width;
+                int y = 0; int ymax = gray.size().height;
+                while(y<ymax){
+                    x=0;
+                    while(x<xmax){
+                        int value = gray.at<uchar>(y,x);
+                        if(value > 0){
+                            outPo2D.x = x;
+                            outPo2D.y = y;
+                            retvalue = true;
+                            i = imax;
+                            x = xmax;
+                            y = ymax;
+                        } 
+                    x++;
+                    }
+                y++;
+                }
+            }
+
+    k4a_image_release(imgSinglePointk4aDummyRGBA);
+    k4a_image_release(imgk4aDummy);
+    i++;
+    }
+
+    return(retvalue);
+}
+#endif
+
+
+#ifdef USE_CV
+/**
+  * convert: k4a_image to openCV CV_8UC3 \n
+  * 
+  * input:\n
+  * \param	in = k4a_image image; int  format: target format 0 = RGBA, 1 = RGB, 2 = Gray
+  * output:\n
+  * \param	out = cv::Mat image
+  * \return	void
+  */
+void kv3::convertK4aImageToOpenCvImage(const k4a_image_t &in, const int format, cv::Mat &out){
+    cv::Mat img = cv::Mat(k4a_image_get_height_pixels(in), k4a_image_get_width_pixels(in), CV_8UC4, k4a_image_get_buffer(in));
+    //cv::Mat img = Mat(k4a_image_get_height_pixels(in), k4a_image_get_width_pixels(in), CV_8UC4, (void*)in, Mat::AUTO_STEP);
+    if(format == 0){
+        out = img.clone();
+    }
+    if(format == 1){
+        cvtColor(img, out, cv::COLOR_RGBA2RGB);
+    }
+    if(format == 2){
+        cvtColor(img, out, cv::COLOR_RGBA2GRAY);
+    }
+}//end_fct
+#endif
+
+
+#ifdef USE_CV
+/**
+  * convert: openCV image to k4a_image CV_8UC4 \n
+  * 
+  * input:\n
+  * \param	in = cv::Mat image (all formats); format cv image format --- input format 0 = RGBA, 1 = RGB, 2 = Gray; 
+  * output:\n
+  * \param	out = k4a_image image (RGBA)
+  * \return	void
+  */
+void kv3::convertOpenCvImageToK4aImage(const cv::Mat &in, const int &format, k4a_image_t &out){
+    Mat imgRGBA;
+    if(format == 0){
+        k4a_image_create(K4A_IMAGE_FORMAT_COLOR_BGRA32, in.cols, in.rows, in.cols * 4 * (int)sizeof(uint8_t), &out);
+        memcpy(k4a_image_get_buffer(out), &in.ptr<cv::Vec4b>(0)[0], in.rows * in.cols * sizeof(cv::Vec4b));       
+    }else{
+        if(format == 1){
+            cvtColor(in, imgRGBA, cv::COLOR_RGB2RGBA);
+        }
+        if(format == 2){
+            Mat rgb;
+            cvtColor(in, rgb, cv::COLOR_GRAY2RGB);
+            cvtColor(rgb, imgRGBA, cv::COLOR_RGB2RGBA);
+        }
+        k4a_image_create(K4A_IMAGE_FORMAT_COLOR_BGRA32, in.cols, in.rows, in.cols * 4 * (int)sizeof(uint8_t), &out);
+        memcpy(k4a_image_get_buffer(out), &imgRGBA.ptr<cv::Vec4b>(0)[0], imgRGBA.rows * imgRGBA.cols * sizeof(cv::Vec4b));
+    }
+    //do not forget to  release the k4a_image_t image via "k4a_image_release(k4a_image_t image)".    
+}//end_fct
+#endif
+
+
 #ifdef USE_PCL
 /**
-  * read the point cloud from kv3 sensnor and\n
+  * read the point cloud from kv3 sensor and\n
   * store it inside PCL-Lib pointcloud\n
   * input:\n
   * \param	none (internal grab from current kv3 PCL)
